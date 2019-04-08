@@ -5,6 +5,7 @@
  * 2. The value of "this" inside an arrow function is always inherited from the enclosing scope.
  * 3. An arrow function expression is a syntactically compact alternative to a regular function expression,
  *      although without its own bindings to the this, arguments, super, or new.target keywords. (means we can't do something = new ArrowFunction()).
+ * 4. Arrow functions do not have their own this value. The value of this inside an arrow function is always inherited from the enclosing scope.
  *
  * The new.target property lets you detect whether a function or constructor was called using the new operator.
  *
