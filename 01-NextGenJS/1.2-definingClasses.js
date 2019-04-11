@@ -94,3 +94,75 @@ class Point {
 const p1 = new Point(5, 5);
 const p2 = new Point(10, 10);
 console.log(Point.distance(p1, p2));
+
+/**
+ * @section - Public field declarations.
+ *
+ * @description - By declaring fields up-front, class definitions become more self-documenting, and the fields are always present. As seen below, the fields can be declared with or without a default value.
+ */
+
+class Rectangle3 {
+  size = 0;
+  color;
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  print() {
+    console.log("Height: ", this.height);
+    console.log("Size: ", this.size);
+    console.log("Color: ", this.color);
+  }
+}
+
+var r3 = new Rectangle(10, 20); // OUTPUT: Rectangle {size: 0, color: undefined, height: 10, width: 20}.
+r3.print();
+
+/**
+ * @section - Private field declarations.
+ *
+ * @description - In ESnext, private class fields are defined using a hash # prefix. It's an error to reference private fields from outside of the class; they can only be read or written within the class body.
+ */
+
+/*class MyClass {
+  a = 1;          // .a is public
+  #b = 2;         // .#b is private
+  static #c = 3;  // .#c is private and static
+
+  incB() {
+    this.#b++;
+  }
+}
+
+const m = new MyClass();
+
+m.incB(); // runs OK
+m.#b = 0; // error - private property cannot be modified outside class.
+
+*/
+
+/**
+ * @note - Note that there’s no way to define private methods, getters and setters, although a TC39 stage 2: draft proposal suggests using a hash # prefix on names. For example:
+/*
+class MyClass {
+
+    // private property
+    #x = 0;
+  
+    // private method (can only be called within the class)
+    #incX() {
+      this.#x++;
+    }
+  
+    // private setter (can only be called within the class)
+    set #setX(x) {
+      this.#x = x;
+    }
+  
+    // private getter (can only be called within the class)
+    get #getX() {
+      return this.$x;
+    }
+  
+}
+*/
