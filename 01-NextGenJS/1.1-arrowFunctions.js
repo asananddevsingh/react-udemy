@@ -121,3 +121,45 @@ class Child extends Parent {
 new Child();
 
 //  ================================================ //
+
+class Animal {
+  constructor() {
+    this.name = "Parent";
+    this.age = 40;
+  }
+  getName() {
+    console.log("Parent getName this: ", this);
+    return this.name;
+  }
+  /**
+   * @note - It will not have its binding to the "super" keyword.
+   *
+   * While calling this method, It will throw Uncaught TypeError: (intermediate value).getArrowName is not a function
+   */
+  getArrowName = () => {
+    console.log("Parent getArrowName this: ", this);
+    return this.name;
+  };
+}
+
+var a1 = new Animal();
+a1; //OUTPUT: Animal {getArrowName: ƒ, getArrowAge: ƒ, name: "Parent", age: 40}
+class Dog extends Animal {
+  getParentName() {
+    console.log("Child getParentName this: ", this);
+    return super.getName();
+  }
+  getParentArrowName() {
+    console.log("Child getParentArrowName this: ", this);
+    return super.getArrowName();
+  }
+}
+
+var d1 = new Dog();
+d1; // OUTPUT: Dog {getArrowName: ƒ, getArrowAge: ƒ, name: "Parent", age: 40, getParentArrowName: ƒ}
+
+d1.getParentName(); // OUTPUT:
+// Child getParentName this:  Dog {getArrowName: ƒ, getArrowAge: ƒ, name: "Parent", age: 40, getParentArrowName: ƒ}
+// Parent getName this:  Dog {getArrowName: ƒ, getArrowAge: ƒ, name: "Parent", age: 40, getParentArrowName: ƒ}
+
+d1.getParentArrowName(); // OUTPUT: Uncaught TypeError: (intermediate value).getArrowName is not a function
