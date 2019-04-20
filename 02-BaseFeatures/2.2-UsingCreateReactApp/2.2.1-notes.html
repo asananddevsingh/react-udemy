@@ -8,5 +8,22 @@
   </head>
   <body>
     <a href="https://github.com/facebook/create-react-app">create-react-app</a>
+
+    <ol>
+      <li>First Element - Current state object.</li>
+      <li>
+        Second Element - function that allows us to update this state such that
+        react is aware of this and re-render the component.
+      </li>
+      <li>
+        In the case of using "useState" hook, values other than the updated
+        fields will be lost.
+      </li>
+      <li>
+        We would need to bind the class method with this keyword, if we don't
+        create the arrow method on the class. <br />
+        e.g. switchNameHandler = this.switchNameHandler.bind(this);
+      </li>
+    </ol>
   </body>
 </html>
