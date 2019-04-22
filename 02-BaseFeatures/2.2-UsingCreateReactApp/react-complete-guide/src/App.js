@@ -3,6 +3,7 @@ import classes from "./App.css";
 import Person from "./Person/person";
 import Hobbies from "./Hobbies/hobbies";
 // import Radium, { StyleRoot } from "radium";
+import ErrorBoundary from "./ErrorBoundary/errorBoundary";
 
 class App extends Component {
   state = {
@@ -73,14 +74,15 @@ class App extends Component {
           </button>
           {this.state.persons.map(person => {
             return (
-              <Person
-                key={person.id}
-                name={person.name}
-                age={person.age}
-                changed={event => this.nameChangeHandler(event, person.id)}
-              >
-                {person.hasHobbies ? <Hobbies /> : null}
-              </Person>
+              <ErrorBoundary key={person.id}>
+                <Person
+                  name={person.name}
+                  age={person.age}
+                  changed={event => this.nameChangeHandler(event, person.id)}
+                >
+                  {person.hasHobbies ? <Hobbies /> : null}
+                </Person>
+              </ErrorBoundary>
             );
           })}
         </div>

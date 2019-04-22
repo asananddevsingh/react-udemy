@@ -9,6 +9,12 @@ const person = props => {
   //   }
   // };
 
+  const rndm = Math.random();
+
+  if (rndm > 0.7) {
+    throw new Error("Oops! Something went wrong.");
+  }
+
   return (
     <div className={classes.Person}>
       <p>
