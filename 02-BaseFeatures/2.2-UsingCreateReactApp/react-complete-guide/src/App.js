@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./App.css";
+import classes from "./App.css";
 import Person from "./Person/person";
 import Hobbies from "./Hobbies/hobbies";
-import Radium, { StyleRoot } from "radium";
+// import Radium, { StyleRoot } from "radium";
 
 class App extends Component {
   state = {
@@ -58,11 +58,7 @@ class App extends Component {
       margin: "16px auto",
       color: "#fff",
       fontSize: "14px",
-      cursor: "pointer",
-      ":hover": {
-        background: "lightgreen",
-        color: "#000"
-      }
+      cursor: "pointer"
     };
 
     let persons = null;
@@ -70,6 +66,7 @@ class App extends Component {
       persons = (
         <div>
           <button
+            className={classes.SwitchName}
             onClick={this.switchNameHandler.bind(this, "Shayarana Sahil")}
           >
             Switch Name
@@ -89,23 +86,16 @@ class App extends Component {
         </div>
       );
       buttonStyle.background = "red";
-
-      buttonStyle[":hover"] = {
-        background: "salmon",
-        color: "#000"
-      };
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Welcome</h1>
-          <button style={buttonStyle} onClick={this.togglePersons}>
-            Toggle Persons
-          </button>
-          {persons}
-        </div>
-      </StyleRoot>
+      <div className={classes.App}>
+        <h1>Welcome</h1>
+        <button style={buttonStyle} onClick={this.togglePersons}>
+          Toggle Persons
+        </button>
+        {persons}
+      </div>
     );
 
     /**
@@ -119,4 +109,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
