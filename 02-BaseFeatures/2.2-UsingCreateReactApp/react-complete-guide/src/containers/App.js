@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import classes from "./App.css";
-import Person from "./Person/person";
-import Hobbies from "./Hobbies/hobbies";
 // import Radium, { StyleRoot } from "radium";
-import ErrorBoundary from "./ErrorBoundary/errorBoundary";
+import Persons from "../components/Persons/persons";
+import Cockpit from "../components/Cockpit/cockpit";
 
 class App extends Component {
   state = {
@@ -53,15 +52,6 @@ class App extends Component {
   };
 
   render() {
-    const buttonStyle = {
-      background: "green",
-      padding: "10px",
-      margin: "16px auto",
-      color: "#fff",
-      fontSize: "14px",
-      cursor: "pointer"
-    };
-
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -72,42 +62,23 @@ class App extends Component {
           >
             Switch Name
           </button>
-          {this.state.persons.map(person => {
-            return (
-              <ErrorBoundary key={person.id}>
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  changed={event => this.nameChangeHandler(event, person.id)}
-                >
-                  {person.hasHobbies ? <Hobbies /> : null}
-                </Person>
-              </ErrorBoundary>
-            );
-          })}
+          <Persons
+            persons={this.state.persons}
+            changed={this.nameChangeHandler}
+          />
         </div>
       );
-      buttonStyle.background = "red";
     }
 
     return (
       <div className={classes.App}>
-        <h1>Welcome</h1>
-        <button style={buttonStyle} onClick={this.togglePersons}>
-          Toggle Persons
-        </button>
+        <Cockpit
+          click={this.togglePersons}
+          showPersons={this.state.showPersons}
+        />
         {persons}
       </div>
     );
-
-    /**
-     * @note - React will understand the above code something like below:
-     */
-    // return React.createElement(
-    //   "div",
-    //   { className: "App" },
-    //   React.createElement("h1", null, "Welcome to the React world!")
-    // );
   }
 }
 

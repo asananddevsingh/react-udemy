@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./person.css";
+import classes from "../Person/person.css";
 // import Radium from "radium";
 
 const person = props => {
@@ -9,11 +9,10 @@ const person = props => {
   //   }
   // };
 
-  const rndm = Math.random();
-
-  if (rndm > 0.7) {
-    throw new Error("Oops! Something went wrong.");
-  }
+  // const rndm = Math.random();
+  // if (rndm > 0.7) {
+  //   throw new Error("Oops! Something went wrong.");
+  // }
 
   return (
     <div className={classes.Person}>

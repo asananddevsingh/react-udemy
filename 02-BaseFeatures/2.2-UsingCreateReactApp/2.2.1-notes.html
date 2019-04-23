@@ -24,6 +24,25 @@
         create the arrow method on the class. <br />
         e.g. switchNameHandler = this.switchNameHandler.bind(this);
       </li>
+      <li>
+        <pre>
+            <!-- <div className="App">
+                <h1>Welcome to the React world!</h1>
+              </div> -->
+        </pre>
+        <p>
+          React works something like this behind the scene for the above
+          commented code.
+        </p>
+        <pre>
+        return React.createElement(
+          "div",
+          { className: "App" },
+          React.createElement("h1", null, "Welcome to the React world!")
+        );
+      </pre
+        >
+      </li>
     </ol>
   </body>
 </html>
