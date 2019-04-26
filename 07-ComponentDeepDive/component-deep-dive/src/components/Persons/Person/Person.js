@@ -9,6 +9,8 @@ import AuthContext from "../../../context/auth-context";
 class Person extends Component {
   detailElement = React.createRef();
 
+  static contextType = AuthContext;
+
   componentDidMount() {
     // Way 1
     // document.querySelectorAll("input")[2].focus();
@@ -18,6 +20,11 @@ class Person extends Component {
 
     // Way 3
     this.detailElement.current.style.color = "green";
+
+    console.log(
+      "[Person.js]: Authentication status from context-api: ",
+      this.context.authenticated
+    );
   }
 
   render() {
@@ -25,11 +32,11 @@ class Person extends Component {
     return (
       // <div className={classes.Person}>
       <React.Fragment>
-        <AuthContext.Consumer>
-          {context =>
-            context.authenticated ? <p>Authenticated</p> : <p>Please log in</p>
-          }
-        </AuthContext.Consumer>
+        {this.context.authenticated ? (
+          <p>Authenticated</p>
+        ) : (
+          <p>Please log in</p>
+        )}
         <p key="key1" onClick={this.props.click} ref={this.detailElement}>
           I'm {this.props.name} and I am {this.props.age} years old!
         </p>
