@@ -27,7 +27,7 @@ class App extends Component {
         { id: "02", name: newName, age: 33, hasHobbies: true }
       ]
     });
-    console.log("[Class]: state::", this.state);
+    // console.log("[Class]: state::", this.state);
   };
 
   nameChangeHandler = (event, id) => {
@@ -51,7 +51,15 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   };
 
+  componentDidMount() {
+    // setInterval(() => {
+    //   this.setState({ showPersons: !this.state.showPersons });
+    // }, 100);
+  }
+
   render() {
+    console.log(new Date());
+
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -73,6 +81,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          title={this.props.appTitle}
           click={this.togglePersons}
           showPersons={this.state.showPersons}
         />

@@ -27,13 +27,11 @@ const hobbies = () => {
    * e.g.
    *
    */
-  console.log("[Functional]: state::", hobbiesStateObj);
-
-  const [newVal] = useState({
-    newValue: "Some new value."
-  });
-
-  console.log("[Functional]: state and newState::", hobbiesStateObj, newVal);
+  // console.log("[Functional]: state::", hobbiesStateObj);
+  // const [newVal] = useState({
+  //   newValue: "Some new value."
+  // });
+  // console.log("[Functional]: state and newState::", hobbiesStateObj, newVal);
 
   const style = {
     color: "green"

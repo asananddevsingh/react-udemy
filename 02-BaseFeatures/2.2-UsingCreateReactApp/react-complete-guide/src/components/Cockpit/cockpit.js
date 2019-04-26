@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const cockpit = props => {
+  useEffect(() => {
+    setTimeout(() => {
+      // alert("state changed.");
+    });
+  }, [props.showPersons]);
+
   const buttonStyle = {
     background: "green",
     padding: "10px",
@@ -16,7 +22,7 @@ const cockpit = props => {
 
   return (
     <div>
-      <h1>Welcome</h1>
+      <h1>{props.title}</h1>
       <button style={buttonStyle} onClick={props.click}>
         Toggle Persons
       </button>
