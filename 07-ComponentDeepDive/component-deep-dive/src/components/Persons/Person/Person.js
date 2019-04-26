@@ -4,6 +4,7 @@ import withClass from "../../../hoc/WithClass";
 
 import classes from "./Person.css";
 import PropTypes from "prop-types";
+import AuthContext from "../../../context/auth-context";
 
 class Person extends Component {
   detailElement = React.createRef();
@@ -24,7 +25,11 @@ class Person extends Component {
     return (
       // <div className={classes.Person}>
       <React.Fragment>
-        {this.props.isAuth ? <p>Authenticated</p> : <p>Please log in</p>}
+        <AuthContext.Consumer>
+          {context =>
+            context.authenticated ? <p>Authenticated</p> : <p>Please log in</p>
+          }
+        </AuthContext.Consumer>
         <p key="key1" onClick={this.props.click} ref={this.detailElement}>
           I'm {this.props.name} and I am {this.props.age} years old!
         </p>
