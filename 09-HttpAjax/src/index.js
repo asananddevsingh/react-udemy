@@ -5,6 +5,15 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import axios from "axios";
 
+// You can set the base-url for all axios requests.
+axios.defaults.baseURL = "https://jsonplaceholder.typicode.com";
+
+// You can set the headers too.
+axios.defaults.headers.common["Authorization"] = "AUTH_TOKEN";
+
+// Even you can add headers specific to the request type.
+axios.defaults.headers.post["Content-Type"] = "application/json";
+
 // It will thwor error once the request is fail, such as no internet connection.
 axios.interceptors.request.use(
   request => {
