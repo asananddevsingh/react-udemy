@@ -8,8 +8,8 @@ class NewPost extends Component {
   state = {
     title: "",
     content: "",
-    author: "Max",
-    submitted: false
+    author: "Max"
+    // submitted: false
   };
 
   componentDidMount() {
@@ -25,7 +25,9 @@ class NewPost extends Component {
     axios.post("/posts", data).then(response => {
       // this.setState({ loadedPost: response.data });
       console.log("Response: ", response);
-      this.setState({ submitted: true });
+      // this.setState({ submitted: true }); // OR
+      // this.props.history.push("/posts"); // OR
+      this.props.history.replace("/posts");
     });
   };
 
