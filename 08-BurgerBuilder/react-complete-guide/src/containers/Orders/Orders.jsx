@@ -30,8 +30,15 @@ class Orders extends Component {
   render() {
     return (
       <div>
-        <Order />
-        <Order />
+        {this.state.orders.map(order => {
+          return (
+            <Order
+              key={order.id}
+              ingredients={order.ingredients}
+              price={+order.price} // + is used to make the price of number type.
+            />
+          );
+        })}
       </div>
     );
   }
