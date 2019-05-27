@@ -27,9 +27,12 @@ const rootReducer = (state = initialState, action) => {
 const store = createStore(rootReducer);
 console.log(store.getState()); // It will return "initialState" becuase we don't have dispatched any action yet and not modified the store.
 
+// Subscription
+store.subscribe(() => {
+  console.log("[Subscription]", store.getState());
+});
+
 // Dispatching Action
 store.dispatch({ type: "INC_COUNTER" });
 store.dispatch({ type: "ADD_COUNTER", value: 10 });
 console.log(store.getState()); // It will return "{ counter: 11 }".
-
-// Subscription
