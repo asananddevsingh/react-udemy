@@ -57,7 +57,7 @@ class Counter extends Component {
         />
         <hr />
         <button onClick={() => this.props.onGreet("Anand Dev")}>
-          Greet Me
+          Greet Me in 2sec
         </button>
         <br />
         <strong>{this.props.greetMsg}</strong>
