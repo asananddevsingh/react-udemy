@@ -60,6 +60,16 @@ class Auth extends Component {
       isValid = value.length <= rules.minLength && isValid;
     }
 
+    if (rules.isEmail) {
+      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+      isValid = pattern.test(value) && isValid;
+    }
+
+    if (rules.isNumeric) {
+      const pattern = /^\d+$/;
+      isValid = pattern.test(value) && isValid;
+    }
+
     return isValid;
   }
 
@@ -122,10 +132,10 @@ class Auth extends Component {
         <form onSubmit={this.onSubmitHandler}>
           {form}
           <Button btnType="Success">SUBMIT</Button>
-          <Button btnType="Danger" clicked={this.switchAuthModelHandler}>
-            SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
-          </Button>
         </form>
+        <Button btnType="Danger" clicked={this.switchAuthModelHandler}>
+          SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
+        </Button>
       </div>
     );
   }
