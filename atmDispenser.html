@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      function countCurrency(atmDispenser) {
+        let possibleSetOfNotes = [2000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+        let noteCount = [];
+        for (let i = 0; i <= 9; i++) {
+          if (atmDispenser >= possibleSetOfNotes[i]) {
+            noteCount[i] = Math.floor(atmDispenser / possibleSetOfNotes[i]);
+            atmDispenser = atmDispenser - noteCount[i] * possibleSetOfNotes[i];
+          } else {
+            noteCount[i] = 0;
+          }
+        }
+
+        if (noteCount.length > 0) {
+          let tbody = "";
+          let total = 0;
+          if (noteCount.length > 0) {
+            total = noteCount.reduce((item1, item2) => {
+              return item1 + item2;
+            });
+          }
+          let theader = '<div class="table-responsive"><table class="table">\n';
+          for (let i = 0; i < noteCount.length - 1; i++) {
+            tbody += "<tr>";
+            tbody += "<td>";
+            tbody += noteCount[i] + " Note of Rs " + possibleSetOfNotes[i];
+            tbody += "</td>";
+            tbody += "<td>";
+            tbody +=
+              i !== noteCount.length
+                ? noteCount[i + 1] + " Note of Rs " + possibleSetOfNotes[i + 1]
+                : noteCount[i] + " Note of Rs " + possibleSetOfNotes[i];
+            tbody += "</td>";
+            if (i !== noteCount.length - 2) {
+              i = i + 1;
+            }
+            tbody += "</tr>\n";
+          }
+          tbody +=
+            '<tr> <td class="bold-w">Total notes dispensed: &nbsp; &nbsp; &nbsp;' +
+            total +
+            "</td><td></td></tr>";
+          let tfooter = "</table></div>";
+          document.getElementById("wrapper").innerHTML =
+            theader + tbody + tfooter;
+        }
+        return false;
+      }
+
+      function onSubmitForm(e) {
+        let atmDispenser = parseInt(document.atmDispenser[0].value, 0);
+        if (atmDispenser && atmDispenser > 0) {
+          document.getElementById("error").innerHTML = null;
+          countCurrency(atmDispenser);
+          e.preventDefault();
+        } else {
+          e.preventDefault();
+          if (atmDispenser <= 0) {
+            document.getElementById("error").innerHTML =
+              "Field value should be greater than 0.";
+          } else {
+            document.getElementById("error").innerHTML =
+              "Field can't be left empty.";
+          }
+          document.getElementById("wrapper").innerHTML = null;
+          return false;
+        }
+      }
+    </script>
+  </head>
+  <style>
+    .welcome {
+      background-color: #fff;
+    }
+
+    .headCenter {
+      font-weight: bold;
+      align-self: center;
+      color: #000;
+      margin-bottom: 30px;
+      font-size: 21px;
+      margin-left: 47px;
+      font-family: sans-serif;
+    }
+
+    .title {
+      align-self: center;
+      color: #a9a9a9;
+      font-size: 12px;
+    }
+
+    .bgWhole {
+      background-color: #f8f8f8;
+      padding: 27px !important;
+      height: 378px;
+    }
+
+    .cross {
+      padding: 14px !important;
+      width: 316px;
+      height: auto;
+      margin-right: 49px;
+    }
+
+    .bgTable {
+      color: #000;
+    }
+
+    td {
+      margin-left: 14px;
+      color: #000;
+    }
+
+    .form-element-edges {
+      border-radius: 0px !important;
+    }
+
+    .bold-w {
+      font-weight: bold;
+    }
+
+    input:required {
+      top: -5px;
+      left: 105%;
+    }
+
+    .errorMessage {
+      color: red;
+      font-size: 12px;
+      margin-bottom: 19px;
+    }
+
+    .form-custom-prop {
+      margin-bottom: 0px !important;
+    }
+  </style>
+
+  <body>
+    <div class="container mt-3">
+      <div class="d-flex p-3 bgWhole text-white">
+        <div class="p-2 welcome cross">
+          <h3 class="headCenter">Welcome to ATM</h3>
+          <form name="atmDispenser" onsubmit="onSubmitForm(event)">
+            <div class="form-group form-custom-prop">
+              <label class="title" for="amount">Enter the Amount</label>
+              <input
+                type="number"
+                class="form-control form-element-edges"
+                id="email"
+                placeholder="Enter the Amount"
+                name="email"
+              />
+            </div>
+            <h6 id="error" class="errorMessage"></h6>
+            <button
+              type="submit"
+              class="btn btn-primary col-lg-12 button-edges"
+            >
+              Get Money
+            </button>
+          </form>
+        </div>
+        <div class="p-2 col-lg-8">
+          <h6 class="bgTable">You will get the following amount</h6>
+          <div id="wrapper"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
