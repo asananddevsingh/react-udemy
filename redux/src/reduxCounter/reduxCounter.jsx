@@ -53,6 +53,14 @@ reduxCountReducer(currentState, { type: "UP" });
 const reduxState = reduxStore.getState();
 console.log("reduxState :", reduxState); // {name: "redux-count-reducer", count: 2}
 
+const handleSubscribe = () => {
+    console.log("Subscribed is called.");
+}
+
+// subscribe
+const unsubscribe = reduxStore.subscribe(handleSubscribe)
+unsubscribe()
+
 const btnStyle = {
     margin: "10px",
     background: "black",
@@ -62,10 +70,7 @@ const btnStyle = {
     minWidth: "80px",
 }
 
-let textColor = {
-
-}
-
+let textColor;
 class ReduxCounter extends React.Component {
     state = {
         isStateChanged: false
@@ -116,7 +121,5 @@ class ReduxCounter extends React.Component {
         </>
     }
 }
-
-
 
 export default ReduxCounter;
